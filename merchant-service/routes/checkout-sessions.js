@@ -27,6 +27,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 // In-memory checkout store (replace with database in production)
 // In-memory checkout storage (exported for webhook handler)
 export const checkouts = new Map();
+// Checkout IDs with a payment in flight, so concurrent /complete calls can't double charge
+const completing = new Set();
 
 // Helper to generate unique IDs
 const generateId = () => `checkout_${crypto.randomBytes(12).toString('hex')}`;
@@ -37,6 +39,8 @@ const CACHE_TTL = 5000; // 5 seconds
 
 // Load products from a specific catalog or all catalogs
 const getProducts = (catalogName = null) => {
+  // Catalog names come from request bodies; only allow plain file names inside lib/
+  if (catalogName && !/^[\w-]+$/.test(catalogName)) catalogName = null;
   const cacheKey = catalogName || '_all';
   const cached = catalogCaches.get(cacheKey);
   const now = Date.now();
@@ -496,6 +500,14 @@ router.post('/:id/complete', async (req, res) => {
       });
     }
     
+    if (completing.has(id)) {
+      return res.status(409).json({
+        type: 'invalid_request',
+        code: 'completion_in_progress',
+        message: 'Checkout completion is already in progress'
+      });
+    }
+    
     // Validate payment data
     if (!payment_data || !payment_data.token) {
       return res.status(400).json({
@@ -525,6 +537,7 @@ router.post('/:id/complete', async (req, res) => {
     console.log('   Amount:', totalAmount, 'cents');
     console.log('   SPT:', payment_data.token.substring(0, 20) + '...');
     
+    completing.add(id);
     try {
       // Create PaymentIntent with SPT using the Stripe SDK
       const paymentIntent = await stripe.paymentIntents.create({
@@ -544,6 +557,7 @@ router.post('/:id/complete', async (req, res) => {
       checkout.payment_intent_id = paymentIntent.id;
       
     } catch (stripeError) {
+      completing.delete(id);
       console.error('❌ Payment failed:', stripeError.message);
       
       // Add error message to checkout
@@ -582,11 +596,13 @@ router.post('/:id/complete', async (req, res) => {
     });
     
     checkouts.set(id, checkout);
+    completing.delete(id);
     
     console.log('🎉 Checkout completed:', id);
     res.json(formatCheckoutResponse(checkout));
     
   } catch (error) {
+    completing.delete(req.params.id);
     console.error('Complete checkout error:', error);
     res.status(500).json({
       type: 'processing_error',

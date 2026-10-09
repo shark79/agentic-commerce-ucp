@@ -19,6 +19,22 @@ function getDefaultMerchantUrl() {
 }
 
 /**
+ * Only send checkout data and payment tokens to known merchants.
+ * Allowed: MERCHANT_API_URL plus any comma-separated origins in ALLOWED_MERCHANT_URLS.
+ */
+function assertAllowedMerchant(merchantUrl) {
+  const allowed = [process.env.MERCHANT_API_URL, ...(process.env.ALLOWED_MERCHANT_URLS || '').split(',')]
+    .map(u => u?.trim())
+    .filter(Boolean)
+    .map(u => new URL(u).origin);
+  let origin;
+  try { origin = new URL(merchantUrl).origin; } catch { origin = null; }
+  if (!origin || !allowed.includes(origin)) {
+    throw new Error(`Merchant URL not allowed: ${merchantUrl}`);
+  }
+}
+
+/**
  * Get merchant URL from request or use default
  */
 function getMerchantUrl(req) {
@@ -171,9 +187,11 @@ router.post('/:id/cancel', async (req, res) => {
 
 // TODO: Call POST /checkout-sessions on the Merchant service
 
-export async function createCheckout(items, buyer, merchantUrl) {
+export async function createCheckout(items, buyer, merchantUrl, catalog) {
+  assertAllowedMerchant(merchantUrl);
   const body = { items };
   if (buyer) body.buyer = buyer;
+  if (catalog) body.catalog = catalog;
   
   const response = await loggedUCPFetch(`${merchantUrl}/checkout-sessions`, {
     method: 'POST',
@@ -193,6 +211,7 @@ export async function createCheckout(items, buyer, merchantUrl) {
 // TODO: Call GET /checkout-sessions/{id} on the Merchant service
 
 export async function getCheckout(checkoutId, merchantUrl) {
+  assertAllowedMerchant(merchantUrl);
   const response = await loggedUCPFetch(`${merchantUrl}/checkout-sessions/${checkoutId}`, {
     method: 'GET',
   }, { endpoint: 'GET /checkout-sessions/{id}', flow: 'Agent → Merchant' });
@@ -208,6 +227,7 @@ export async function getCheckout(checkoutId, merchantUrl) {
 // TODO: Call PUT /checkout-sessions/{id} on the Merchant service
 
 export async function updateCheckout(checkoutId, updates, merchantUrl) {
+  assertAllowedMerchant(merchantUrl);
   // Convert camelCase to snake_case for UCP protocol
   const body = {};
   if (updates.items) body.items = updates.items;
@@ -233,6 +253,7 @@ export async function updateCheckout(checkoutId, updates, merchantUrl) {
  // TODO: Call POST /checkout-sessions/{id}/complete on the Merchant service
 
 export async function completeCheckout(checkoutId, paymentToken, merchantUrl) {
+  assertAllowedMerchant(merchantUrl);
   const body = {
     payment_data: {
       token: paymentToken,
@@ -257,6 +278,7 @@ export async function completeCheckout(checkoutId, paymentToken, merchantUrl) {
 // TODO: Call POST /checkout-sessions/{id}/cancel on the Merchant service
 
 export async function cancelCheckout(checkoutId, reason, merchantUrl) {
+  assertAllowedMerchant(merchantUrl);
   const response = await loggedUCPFetch(`${merchantUrl}/checkout-sessions/${checkoutId}/cancel`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

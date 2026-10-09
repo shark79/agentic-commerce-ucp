@@ -71,7 +71,7 @@ The merchant also publishes `GET /.well-known/ucp` (UCP discovery), which advert
 You need Node 18 or later, a Stripe test account, and the workshop's Lambda and proxy endpoints. The agent service's AI and SPT proxy are hosted by the workshop, so the chat flow won't run without those values.
 
 ```bash
-cp agent-service/.env.example agent-service/.env        # LAMBDA_ENDPOINT, STRIPE_PROXY_URL, WORKSHOP_SECRET
+cp agent-service/.env.example agent-service/.env        # LAMBDA_ENDPOINT, STRIPE_PROXY_URL, WORKSHOP_SECRET (+ ALLOWED_MERCHANT_URLS for extra merchants)
 cp merchant-service/.env.example merchant-service/.env  # STRIPE_SECRET_KEY (sk_test_…)
 ./dev.sh            # installs dependencies and starts all three services (dev.ps1 on Windows)
 ./dev.sh --setup    # prompts for the .env values again
@@ -100,6 +100,7 @@ dev.sh / dev.ps1     Start all services
 ## Known limitations
 
 - Checkout sessions are stored in memory and are lost when the merchant restarts.
+- The agent only calls merchants on its allowlist (`MERCHANT_API_URL` plus `ALLOWED_MERCHANT_URLS`), so payment tokens can't be sent to an arbitrary URL.
 - There are no automated tests yet. I verified the flow by hand through the chat UI and the UCP Inspector.
 - `tsc --noEmit` reports a few type errors in the provided starter UI (`OrderConfirmation.tsx`, and `PaymentElement` options in `PaymentSetup.tsx`). The Next.js dev server runs anyway.
 
