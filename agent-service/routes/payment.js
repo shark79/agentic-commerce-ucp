@@ -233,11 +233,9 @@ router.delete('/methods', async (req, res) => {
  * - Return data.paymentMethods array
  */
 export async function getCustomerPaymentMethods(email) {
-  // TODO: Implement this function
-  // Call: callProxy(`/methods?email=${encodeURIComponent(email)}`)
-  // Return: data.paymentMethods || []
-  
-  throw new Error('TODO: Implement getCustomerPaymentMethods - see workshop Module 3, Chapter 5');
+  // Get from proxy
+  const data = await callProxy(`/methods?email=${encodeURIComponent(email)}`);
+  return data.paymentMethods || [];
 }
 
 
@@ -250,12 +248,18 @@ export async function getCustomerPaymentMethods(email) {
  * - Return the SPT token for use in checkout completion
  */
 export async function createSPT(email, amount = 100000, currency = 'usd') {
-  // TODO: Implement this function
-  // Call: callProxy('/create-spt', { method: 'POST', body: JSON.stringify({ email, amount, currency }) })
-  // Check for errors in response
-  // Return the SPT data (contains .token property)
+  // Call the proxy to create an SPT
+  const data = await callProxy('/create-spt', {
+    method: 'POST',
+    body: JSON.stringify({ email, amount, currency }),
+  });
   
-  throw new Error('TODO: Implement createSPT - see workshop Module 3, Chapter 5');
+  if (data.error) {
+    throw new Error(data.error);
+  }
+  
+  console.log('🔐 SPT created for', email);
+  return data;
 }
 
 

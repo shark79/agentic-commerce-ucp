@@ -170,56 +170,105 @@ router.post('/:id/cancel', async (req, res) => {
 // ============================================================================
 
 // TODO: Call POST /checkout-sessions on the Merchant service
-export async function createCheckout(items, buyer, merchantUrl) {
-  // TODO: Implement this function
-  throw new Error('TODO: Implement createCheckout - call POST /checkout-sessions on Merchant');
-}
 
+export async function createCheckout(items, buyer, merchantUrl) {
+  const body = { items };
+  if (buyer) body.buyer = buyer;
+  
+  const response = await loggedUCPFetch(`${merchantUrl}/checkout-sessions`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  }, { endpoint: 'POST /checkout-sessions', flow: 'Agent → Merchant' });
+  
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.message || 'Failed to create checkout');
+  }
+  
+  return await response.json();
+}
 
 
 // TODO: Call GET /checkout-sessions/{id} on the Merchant service
 
 export async function getCheckout(checkoutId, merchantUrl) {
-  // TODO: Implement this function
-  // Call: GET ${merchantUrl}/checkout-sessions/${checkoutId}
-  // Return the checkout object from the response
+  const response = await loggedUCPFetch(`${merchantUrl}/checkout-sessions/${checkoutId}`, {
+    method: 'GET',
+  }, { endpoint: 'GET /checkout-sessions/{id}', flow: 'Agent → Merchant' });
   
-  throw new Error('TODO: Implement getCheckout - see workshop instructions');
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.message || 'Failed to get checkout');
+  }
+  
+  return await response.json();
 }
 
 // TODO: Call PUT /checkout-sessions/{id} on the Merchant service
 
 export async function updateCheckout(checkoutId, updates, merchantUrl) {
-  // TODO: Implement this function
-  // Build body with snake_case keys: fulfillment_address, fulfillment_option_id
-  // Call: PUT ${merchantUrl}/checkout-sessions/${checkoutId}
-  // Return the updated checkout object
+  // Convert camelCase to snake_case for UCP protocol
+  const body = {};
+  if (updates.items) body.items = updates.items;
+  if (updates.buyer) body.buyer = updates.buyer;
+  if (updates.fulfillmentAddress) body.fulfillment_address = updates.fulfillmentAddress;
+  if (updates.fulfillmentOptionId) body.fulfillment_option_id = updates.fulfillmentOptionId;
   
-  throw new Error('TODO: Implement updateCheckout - see workshop instructions');
+  const response = await loggedUCPFetch(`${merchantUrl}/checkout-sessions/${checkoutId}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  }, { endpoint: 'PUT /checkout-sessions/{id}', flow: 'Agent → Merchant' });
+  
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.message || 'Failed to update checkout');
+  }
+  
+  return await response.json();
 }
 
 
  // TODO: Call POST /checkout-sessions/{id}/complete on the Merchant service
 
- export async function completeCheckout(checkoutId, paymentToken, merchantUrl) {
-  // TODO: Implement this function
-  // Build body: { payment_data: { token: paymentToken, provider: 'stripe' } }
-  // Call: POST ${merchantUrl}/checkout-sessions/${checkoutId}/complete
-  // Check response for errors in checkout.messages array
-  // Return the completed checkout object
+export async function completeCheckout(checkoutId, paymentToken, merchantUrl) {
+  const body = {
+    payment_data: {
+      token: paymentToken,
+      provider: 'stripe'
+    }
+  };
   
-  throw new Error('TODO: Implement completeCheckout - see workshop instructions');
+  const response = await loggedUCPFetch(`${merchantUrl}/checkout-sessions/${checkoutId}/complete`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  }, { endpoint: 'POST /checkout-sessions/{id}/complete', flow: 'Agent → Merchant' });
+  
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.message || 'Failed to complete checkout');
+  }
+  
+  return await response.json();
 }
 
 // TODO: Call POST /checkout-sessions/{id}/cancel on the Merchant service
 
 export async function cancelCheckout(checkoutId, reason, merchantUrl) {
-  // TODO: Implement this function
-  // Call: POST ${merchantUrl}/checkout-sessions/${checkoutId}/cancel
-  // Send { reason } in the body
-  // Return the cancelled checkout object
+  const response = await loggedUCPFetch(`${merchantUrl}/checkout-sessions/${checkoutId}/cancel`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ reason }),
+  }, { endpoint: 'POST /checkout-sessions/{id}/cancel', flow: 'Agent → Merchant' });
   
-  throw new Error('TODO: Implement cancelCheckout - see workshop instructions');
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.message || 'Failed to cancel checkout');
+  }
+  
+  return await response.json();
 }
 
 

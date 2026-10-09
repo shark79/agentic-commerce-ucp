@@ -1,0 +1,123 @@
+[
+  {
+    "id": "YACHT-001",
+    "title": "Harborline Coastal 34",
+    "price": 300000,
+    "currency": "USD",
+    "description": "Compact coastal cruiser for weekend escapes, with two bedrooms sleeping four, one bathroom with a shower, a kitchenette, a convertible dining lounge, and an outdoor dining area beneath a retractable sunshade. Amenities include a swim platform, freshwater deck shower, sun loungers, Bluetooth speakers, a compact drinks fridge, snorkeling equipment, paddleboard storage, and GPS navigation. Includes a delivery orientation, docking lessons, and an initial maintenance inspection; designed for owner operation without a permanent crew.",
+    "category": "Yachts",
+    "brand": "Harborline",
+    "inStock": true,
+    "stock": 4
+  },
+  {
+    "id": "YACHT-002",
+    "title": "Bluehaven Escape 45",
+    "price": 750000,
+    "currency": "USD",
+    "description": "Family cruising yacht with three bedrooms sleeping six, two bathrooms, a full galley with an oven and dishwasher, and an air-conditioned salon. The flybridge offers an on-deck bar, electric grill, shaded dining, and panoramic seating, while the stern features a hydraulic swim platform and tender storage. Additional amenities include a watermaker, solar-assisted house batteries, a washer-dryer, onboard Wi-Fi hardware, fishing equipment, two paddleboards, and a movie projector. Includes a captain-led delivery voyage, family safety training, and a concierge session to plan the first itinerary; optional skipper and provisioning services are available at additional cost.",
+    "category": "Yachts",
+    "brand": "Bluehaven",
+    "inStock": true,
+    "stock": 3
+  },
+  {
+    "id": "YACHT-003",
+    "title": "Solstice Voyager 60",
+    "price": 1800000,
+    "currency": "USD",
+    "description": "Long-range leisure yacht with four bedrooms sleeping eight, each with a private bathroom, plus separate accommodation for two crew. Features include a rooftop hot tub, a staffed-service-ready cocktail bar, a wine cooler, a chef's galley, a dedicated work office with dual monitors, satellite internet equipment, and a quiet satellite phone room. A convertible game room offers console gaming and board games, while the beach deck carries kayaks, snorkeling kits, and an inflatable tender. Stabilizers, a watermaker, laundry facilities, and refrigerated food storage support extended trips. Includes route planning, an initial provisioning package, and crew recruitment assistance; ongoing crew, connectivity subscriptions, and private chef services are additional.",
+    "category": "Yachts",
+    "brand": "Solstice Marine",
+    "inStock": true,
+    "stock": 2
+  },
+  {
+    "id": "YACHT-004",
+    "title": "Azure Meridian 78",
+    "price": 3500000,
+    "currency": "USD",
+    "description": "Entertainment-focused yacht with five bedrooms sleeping ten, five private bathrooms, and separate quarters for four crew. A sun deck combines a compact plunge pool, an on-deck cocktail bar, cabanas, and a dancefloor with programmable lighting and integrated speakers. Inside are a cinema lounge, a game room with arcade cabinets and a card table, a glass-fronted wine cabinet, a chef's kitchen, and a private office with satellite communications. Wellness and recreation amenities include a massage room, exercise bikes, a fold-out beach terrace, a tender, and two personal watercraft. Includes a delivery celebration with a chef and bartender, a custom cruising itinerary, and crew onboarding support; ongoing hospitality and watersports instruction can be arranged at additional cost.",
+    "category": "Yachts",
+    "brand": "Azure Yachting",
+    "inStock": true,
+    "stock": 2
+  },
+  {
+    "id": "YACHT-005",
+    "title": "Northstar Expedition 95",
+    "price": 6500000,
+    "currency": "USD",
+    "description": "Expedition-oriented yacht with six bedrooms sleeping twelve, including an owner's suite with a private terrace, and accommodation for six crew. Designed for extended exploration with generous fuel and cold-storage capacity, redundant generators, watermakers, stabilizers, and a dedicated satellite phone and communications room. Amenities include a heated plunge pool, a sauna, a massage suite, a gym, an observation lounge with a library, two private work offices, a cinema, and a game room with a racing simulator. The sheltered aft deck offers a bar, outdoor kitchen, and dining for twelve; a dive equipment room, compressor, expedition tender, kayaks, and underwater camera equipment support excursions. Includes an expedition planning package, equipment training, and crew recruitment support; naturalist guides, dive instructors, and onboard wellness staff are available as separately priced services.",
+    "category": "Yachts",
+    "brand": "Northstar Marine",
+    "inStock": true,
+    "stock": 1
+  },
+  {
+    "id": "YACHT-006",
+    "title": "Aurelia Grand Horizon 115",
+    "price": 10000000,
+    "currency": "USD",
+    "description": "Flagship luxury yacht with six guest bedrooms sleeping twelve, including a full-beam owner's apartment with a private office, dressing room, spa bathroom, and terrace, plus separate quarters for eight crew. The resort-style sun deck features a swimming pool with a swim-current system, a hot tub, an on-deck bar, shaded cabanas, and a dedicated dancefloor with professional sound and lighting. Interiors include a formal dining salon, a chef's galley with a separate preparation kitchen, temperature-controlled wine storage, a cinema, a game room with arcade machines and virtual-reality stations, and a music lounge with a digital grand piano. A meeting room, second work office, and private satellite phone room provide workspace and communications. The wellness suite offers a sauna, steam shower, massage room, and gym, while fold-out beach terraces, a tender garage, personal watercraft, diving equipment, and electric surfboards support recreation. Includes bespoke interior styling consultations, a fully crewed seven-day handover cruise with a private chef, and first-year shore-based concierge support; ongoing crew salaries, provisions, fuel, and connectivity subscriptions are additional.",
+    "category": "Yachts",
+    "brand": "Aurelia Yachts",
+    "inStock": true,
+    "stock": 1
+  },
+  {
+    "id": "YACHT-007",
+    "title": "Harborline Bay 26",
+    "price": 150000,
+    "currency": "USD",
+    "description": "Entry-level pocket yacht for couples and short coastal getaways, with one cozy bedroom sleeping two, a convertible dinette for two occasional overnight guests, and a compact bathroom with a handheld shower. Features include a kitchenette with a single-burner cooktop and fridge, shaded cockpit seating, a removable outdoor dining table, bow sun cushions, a swim ladder, Bluetooth speakers, USB charging, GPS navigation, and shore-power air conditioning. Fishing rod holders, picnic storage, and a snorkeling kit make day trips easy. Includes an owner orientation, a basic docking lesson, and a starter safety equipment package; intended for owner operation with marina services purchased separately.",
+    "category": "Yachts",
+    "brand": "Harborline",
+    "inStock": true,
+    "stock": 6
+  },
+  {
+    "id": "YACHT-008",
+    "title": "Bluehaven Weekend 29",
+    "price": 200000,
+    "currency": "USD",
+    "description": "Comfortable weekend yacht with two compact bedrooms sleeping four, an enclosed bathroom with a shower, and a bright dining lounge. Amenities include a two-burner galley, microwave, drinks fridge, cockpit wet bar, foldaway grill, retractable shade canopy, padded bow lounge, swim platform, and freshwater deck shower. A small solar panel supports house-battery charging, while a chartplotter, depth sounder, Bluetooth audio, and a cabin television cover navigation and entertainment. Includes two inflatable paddleboards, an insulated picnic hamper, a delivery orientation, and a first-trip provisioning credit; optional cleaning and skipper services cost extra.",
+    "category": "Yachts",
+    "brand": "Bluehaven",
+    "inStock": true,
+    "stock": 5
+  },
+  {
+    "id": "YACHT-009",
+    "title": "Solstice Cove 32",
+    "price": 250000,
+    "currency": "USD",
+    "description": "Premium compact cruiser with two bedrooms sleeping four, a bathroom with a separate shower enclosure, and an air-conditioned salon with panoramic windows. The galley includes an induction cooktop, microwave, fridge-freezer, and espresso machine. Outdoor comforts include an on-deck refreshment bar, an electric grill, shaded dining, a convertible stern daybed, underwater lighting, and an extended swim platform. A foldaway office desk, onboard Wi-Fi router, smart television, board-game cabinet, compact generator, and solar-assisted batteries support longer weekends aboard. Includes snorkeling equipment, two paddleboards, a coastal itinerary consultation, a captain-led familiarization day, and the first scheduled maintenance service; mobile data and ongoing concierge services are additional.",
+    "category": "Yachts",
+    "brand": "Solstice Marine",
+    "inStock": true,
+    "stock": 4
+  },
+  {
+    "id": "YACHT-010",
+    "title": "Aurelia Imperial Odyssey",
+    "price": 100000000,
+    "currency": "USD",
+    "description": "Private superyacht with twelve guest bedrooms accommodating twenty-four, including an owner's penthouse with a private terrace, and separate accommodation for thirty crew. Five decks connected by an elevator feature a glass-sided infinity pool, two hot tubs, a beach club with fold-out terraces, multiple cocktail bars, a ballroom with a dancefloor, and a retractable-roof dining pavilion. Entertainment includes a private cinema, a live-performance salon, a casino-style games lounge, a bowling lane, an arcade with racing simulators, and a recording studio. A full spa offers a hammam, sauna, beauty salon, massage suites, and a sea-view gym. Two executive offices, a boardroom, a sound-insulated satellite phone room, and redundant satellite internet equipment support work at sea. A helipad, tender fleet, personal watercraft, electric surfboards, and a dive center enable excursions, while an onboard clinic, cold-storage rooms, laundry, watermakers, and redundant power systems support extended voyages. Includes bespoke furnishings, crew recruitment and training, and a thirty-day inaugural voyage with private chefs, butlers, wellness practitioners, and watersports instructors; subsequent operations and staffing are additional.",
+    "category": "Yachts",
+    "brand": "Aurelia Yachts",
+    "inStock": true,
+    "stock": 1
+  },
+  {
+    "id": "YACHT-011",
+    "title": "Celestia Sovereign Floating Town",
+    "price": 15000000000,
+    "currency": "USD",
+    "description": "Ultimate private floating town arranged across six expansive floors connected by panoramic elevators, accommodating a community of 200 to 250 residents in 125 luxury bedrooms and residential suites, with separate quarters for up to 300 crew and service staff. An owner's sky estate includes private gardens, a pool, a library, a dining salon, and executive offices. The resort deck features a lavish on-deck casino beneath a retractable glass canopy, infinity pools, a lazy river, hot tubs, swim-up bars, cabanas, and a vast dancefloor with concert lighting. Multiple theatres include a grand stage for live productions, two cinemas, an outdoor amphitheatre, and an immersive planetarium, complemented by a nightclub, jazz club, recording studios, bowling lanes, an esports arena, virtual-reality rooms, and game lounges. Residents enjoy a landscaped town square, botanical gardens, an art gallery, luxury boutiques, a patisserie, a market hall, and twelve dining venues supported by private chefs, a culinary academy, wine cellars, and chef's-table tasting rooms. A wellness district provides a thermal spa, hammams, saunas, treatment suites, gyms, an indoor sports court, a jogging circuit, yoga gardens, and personal trainers. Community facilities include a school and learning center, childcare suites, a library, coworking offices, boardrooms, private satellite phone rooms, a broadcast studio, a medical center with dental facilities, and a veterinary suite. Two helipads, helicopter hangars, an enclosed tender marina, a recreational submersible, sailing dinghies, personal watercraft, and a dive center provide transport and exploration. Redundant propulsion and power systems, battery storage, solar canopies, desalination plants, wastewater treatment, extensive refrigerated stores, hydroponic produce gardens, and a dedicated operations center support life aboard. Includes custom interior commissioning, curated art and furnishings, resident move-in coordination, and an inaugural year of staffed hospitality with butlers, chefs, housekeepers, medical personnel, educators, entertainers, expedition guides, and a round-the-clock concierge; fuel, port fees, consumables, and operations after the first year are additional.",
+    "category": "Yachts",
+    "brand": "Celestia Ocean Estates",
+    "inStock": true,
+    "stock": 1
+  }
+]
